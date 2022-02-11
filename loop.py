@@ -12,8 +12,6 @@ def find_latest(path):
         full_paths = map(lambda file: os.path.join(path, file), files)
         full_paths.sort(reverse=True, key=lambda file: os.path.getmtime(file))
         return full_paths[0]
-    else:
-        return None
 
 
 def find_best(path):
