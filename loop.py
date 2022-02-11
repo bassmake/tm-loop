@@ -11,7 +11,9 @@ def find_latest(path):
     if (len(files) > 0):
         full_paths = map(lambda file: os.path.join(path, file), files)
         full_paths.sort(reverse=True, key=lambda file: os.path.getmtime(file))
-        print(full_paths[0])
+        return full_paths[0]
+    else:
+        return None
 
 
 def find_best(path):
@@ -20,7 +22,10 @@ def find_best(path):
             publish_path = os.path.join(dirpath, dir, "publish")
             if (os.path.isdir(publish_path)):
                 print("-------- " + publish_path + " --------")
-                find_latest(publish_path)
+                found = find_latest(publish_path)
+                if (found != None):
+                    print(found)
+                    break
 
 
 find_best("./test-fs/scenario-1")
